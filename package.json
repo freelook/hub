@@ -1,13 +1,17 @@
 {
-  "name": "chat-example",
-  "version": "0.0.0",
-  "description": "A chat example to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
+  "name": "hub.freelook.info",
+  "version": "0.0.1",
+  "description": "Information Digest",
   "main": "server.js",
-  "repository": "",
-  "author": "Mostafa Eweda <mo.eweda@gmail.com>",
+  "repository": "https://github.com/freelook/hub",
+  "author": "Dima Kostrub",
+  "license": "MIT",
   "dependencies": {
-    "async": "~0.2.8",
-    "express": "~3.2.4",
-    "socket.io": "~0.9.14"
+    "async": "2.1.4",
+    "express": "4.14.1",
+    "body-parser": "1.16.0",
+    "socket.io": "1.7.2",
+    "request": "2.79.0",
+    "cheerio": "0.22.0"
   }
 }
