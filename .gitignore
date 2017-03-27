@@ -1,5 +1,10 @@
 .c9
 .git
 
+mongo
+mongod
+
 node_modules/
 data/
+log/
+nodebb/
