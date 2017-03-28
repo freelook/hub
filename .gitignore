@@ -3,8 +3,10 @@
 
 mongo
 mongod
+ssh
 
 node_modules/
 data/
 log/
 nodebb/
+plugin/

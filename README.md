@@ -5,11 +5,15 @@ Once the server is running, open the project in the shape of https://hub-freeloo
 
 ## Init server
 
-cd ~
-mkdir workspace
-cd workspace
-
 --- Production mode
+
+Check git git --version. Install if not available:
+$ sudo apt-get install git
+
+cd /
+git pull https://github.com/freelook/hub workspace
+sudo chmod -R 777 workspace/
+cd workspace
 
 Add NODE_ENV=production to /etc/environment
 
@@ -34,10 +38,10 @@ Set config:
 sudo nano /etc/mongod.conf 
 
 storage:
-  dbPath: ~/workspace/data/mongodb
+  dbPath: /workspace/data/mongodb
 systemLog:
-  path: ~/workspace/log/mongodb/mongod.log
-
+  path: /workspace/log/mongodb/mongod.log
+  
 mkdir data && cd "$_"
 mkdir mongodb
 cd ..
@@ -46,6 +50,10 @@ mkdir log
 cd log
 mkdir mongodb
 cd ..
+
+Make mongodb start on system startup with:
+
+$ sudo systemctl enable mongod
 
 Start the service and verify service status:
 
@@ -81,7 +89,7 @@ $ mongo -u your_username -p your_password --authenticationDatabase=admin
 
 --- Install NodeBB
 
-$ sudo apt-get install -y git build-essential
+$ sudo apt-get install -y build-essential
 $ sudo git clone https://github.com/NodeBB/NodeBB.git nodebb
 
 $ cd nodebb
