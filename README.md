@@ -144,6 +144,51 @@ Access to files for C9 user: sudo chown -R ubuntu *
 
 --- Install nginx
 
+$ sudo add-apt-repository -y ppa:nginx/stable
+$ sudo apt-get update
+$ sudo apt-get install -y nginx
+$ sudo systemctl enable nginx
+
+$ cd /etc/nginx/sites-enabled/
+$ sudo rm default
+$ sudo ln -s /workspace/nginx /etc/nginx/sites-enabled/nginx
+$ cd /workspace/
+$ nano nginx
+
+Paste config:
+
+server {
+    listen 80;
+
+    server_name __SERVER_IP__;
+
+    location / {
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-NginX-Proxy true;
+
+        proxy_pass http://127.0.0.1:__SERVER_PORT__;
+        proxy_redirect off;
+
+        # Socket.IO Support
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
+
+Run nginx server:
+
+$ sudo service nginx start
+$ sudo service nginx status
+$ sudo service nginx reload
+$ sudo service nginx stop
+
+Test:
+
+sudo nginx -c /etc/nginx/nginx.conf -t
 
 
 ## Help
