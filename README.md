@@ -12,7 +12,7 @@ $ sudo apt-get install git
 
 cd /
 git pull https://github.com/freelook/hub workspace
-sudo chmod -R 777 workspace/
+sudo chmod -R 777 workspace/ - ! or add chown rights for each user and group
 cd workspace
 
 Add NODE_ENV=production to /etc/environment
@@ -55,8 +55,17 @@ Make mongodb start on system startup with:
 
 $ sudo systemctl enable mongod
 
+Add lock removal to service:
+
+$ sudo nano /lib/systemd/system/mongod.service
+
+ExecStartPre=/usr/bin/mongod --repair --dbpath=/workspace/data/mongodb
+ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
+
 Start the service and verify service status:
 
+$ sudo chown -R mongodb:mongodb /workspace/*
+$ sudo chown -R mongodb:mongodb /tmp/*
 $ sudo service mongod start
 $ sudo service mongod status
 
@@ -97,7 +106,45 @@ $ sudo npm install --production
 $ sudo ./nodebb setup
 $ sudo ./nodebb start
 
+$ sudo adduser --system --group nodebb
+$ sudo chown -R nodebb:nodebb /workspace
+
+To start automatically:
+
+sudo nano /lib/systemd/system/nodebb.service
+
+[Unit]
+Description=NodeBB forum for Node.js.
+Documentation=http://nodebb.readthedocs.io/en/latest/
+After=system.slice multi-user.target
+
+[Service]
+Type=simple
+User=nodebb
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=nodebb
+
+Environment=NODE_ENV=production
+WorkingDirectory=/workspace/nodebb
+ExecStart=/usr/bin/node loader.js --no-daemon --no-silent
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+Finally, enable and start NodeBB:
+
+$ sudo systemctl enable nodebb
+$ sudo service nodebb start
+$ sudo service nodebb status
+
 Access to files for C9 user: sudo chown -R ubuntu *
+
+--- Install nginx
+
+
 
 ## Help
 

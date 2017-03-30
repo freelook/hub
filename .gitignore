@@ -3,6 +3,8 @@
 
 mongo
 mongod
+mongodump
+mongorestore
 ssh
 
 node_modules/
