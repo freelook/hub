@@ -1,0 +1,8 @@
+{
+  "name": "nodebb-plugin-freelook",
+  "version": "1.0.0",
+  "description": "freelook.info",
+  "main": "plugin.js",
+  "author": "Dima Kostrub",
+  "license": "ISC"
+}

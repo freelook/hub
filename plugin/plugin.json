@@ -1,0 +1,6 @@
+{
+    "url": "http://freelook.info",
+    "name": "nodebb-plugin-freelook",
+    "templates": "./templates",
+    "less": ["./plugin.less"]
+}
