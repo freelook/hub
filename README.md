@@ -39,6 +39,8 @@ sudo nano /etc/mongod.conf
 
 storage:
   dbPath: /workspace/data/mongodb
+journal:
+  enabled: false
 systemLog:
   path: /workspace/log/mongodb/mongod.log
   
