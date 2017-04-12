@@ -29,8 +29,8 @@ $ npm -v
 
 --- Install MongoDB
 
-$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
-$ echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+$ echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 $ sudo apt update && sudo apt install -y mongodb-org
 
 Set config:
@@ -41,6 +41,9 @@ storage:
   dbPath: /workspace/data/mongodb
 journal:
   enabled: false
+wiredTiger:
+  engineConfig:
+    cacheSizeGB: 0.1
 systemLog:
   path: /workspace/log/mongodb/mongod.log
   
@@ -61,13 +64,17 @@ Add lock removal to service:
 
 $ sudo nano /lib/systemd/system/mongod.service
 
-ExecStartPre=/usr/bin/mongod --repair --dbpath=/workspace/data/mongodb
+ExecStartPre=/bin/rm -f /workspace/data/mongodb/mongod.lock
+ExecStartPre=/bin/rm -f /workspace/data/mongodb/WiredTiger.lock
+ExecStartPre=/usr/bin/mongod --repair --dbpath /workspace/data/mongodb --wiredTigerCacheSizeGB 0.1
 ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
 
 Start the service and verify service status:
 
 $ sudo chown -R mongodb:mongodb /workspace/*
+$ sudo chmod g+s /workspace
 $ sudo chown -R mongodb:mongodb /tmp/*
+$ sudo chmod g+s /tmp
 $ sudo service mongod start
 $ sudo service mongod status
 
@@ -119,6 +126,7 @@ sudo nano /lib/systemd/system/nodebb.service
 Description=NodeBB forum for Node.js.
 Documentation=http://nodebb.readthedocs.io/en/latest/
 After=system.slice multi-user.target
+Wants=mongod.service
 
 [Service]
 Type=simple
@@ -192,6 +200,20 @@ Test:
 
 sudo nginx -c /etc/nginx/nginx.conf -t
 
+-- Install redis
+
+$ sudo apt-add-repository ppa:chris-lea/redis-server
+$ sudo apt-get update
+$ sudo apt-get install redis-server
+
+$ sudo nano /etc/redis/redis.conf 
+supervised systemd
+logfile /workspace/log/redis/redis-server.log
+dir /workspace/data/redis
+requirepass foobared -> set password
+maxmemory 128mb
+
+sudo systemctl enable redis
 
 ## Help
 

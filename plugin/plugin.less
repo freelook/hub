@@ -1,10 +1,27 @@
-#topics-container {
-    .category-item {
-        background: none;
-        box-shadow: none;
+@media (min-width: 768px) and (max-width: 991px) {
+    #search-form{
+        display: none;
+    }
+    
+    #logged-in-menu li:nth-child(2) {
+        display: block !important;
         
-        .category-body {
-            background: #ffffff;
+        a {
+            max-width: 50px;
+            max-height: 50px;
+            overflow: hidden;  
+            
+            i {
+               margin-bottom: 15px; 
+            }
         }
     }
+}
+
+#search-button {
+    outline: none;
+}
+
+#category-no-topics {
+    margin: 15px 0;
 }
