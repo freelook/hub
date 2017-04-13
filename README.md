@@ -213,6 +213,32 @@ dir /workspace/data/redis
 requirepass foobared -> set password
 maxmemory 128mb
 
+sudo chown -R redis:redis /var/run/redis  
+sudo chmod g+s /var/run/redis
+
+Check /etc/systemd/system/multi-user.target.wants/
+      /etc/systemd/system for redis and rm
+
+sudo nano /etc/systemd/system/redis.service
+
+[Unit]
+Description=Redis Datastore Server
+After=network.target
+
+[Service]
+Type=forking
+PIDFile=/var/run/redis/redis-server.pid
+User=redis
+Group=redis
+
+ExecStart=/usr/bin/redis-server /etc/redis/redis.conf
+ExecReload=/bin/kill -USR2 $MAINPID
+ExecStop=/usr/bin/redis-cli -a <pass> shutdown
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
 sudo systemctl enable redis
 
 ## Help
