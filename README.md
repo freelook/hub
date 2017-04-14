@@ -111,6 +111,7 @@ $ sudo apt-get install -y build-essential
 $ sudo git clone https://github.com/NodeBB/NodeBB.git nodebb
 
 $ cd nodebb
+$ git checkout <tag>
 $ sudo npm install --production
 $ sudo ./nodebb setup
 $ sudo ./nodebb start
