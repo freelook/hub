@@ -9,6 +9,7 @@ ssh
 
 node_modules/
 data/
+dump/
 log/
 nodebb/
 api/
