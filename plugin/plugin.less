@@ -1,57 +1,46 @@
-@media (min-width: 768px) and (max-width: 991px) {
-    #search-form{
+@media (min-width: 768px) and (max-width: 1199px) {
+    #search-form {
         display: none;
     }
-    
-    #logged-in-menu li:nth-child(2) {
+    #search-menu {
         display: block !important;
-        
         a {
             max-width: 50px;
             max-height: 50px;
-            overflow: hidden;  
-            
+            overflow: hidden;
             i {
-               margin-bottom: 15px; 
+                margin-bottom: 15px;
             }
         }
     }
 }
 
-#topics-container {
-    .category-item {
-        background: none;
-        box-shadow: none;
-        
-        .category-body {
-            background: #ffffff;
-        }
-    }
+a,
+button {
+    outline: none !important;
 }
 
-#search-button {
-    outline: none;
+.btn {
+    max-width: 90vmin;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #category-no-topics {
     margin: 15px 0;
 }
 
-.iframely-link {
-    .iframely-container {
-        .panel-default {
-            border-top-color: transparent;
-        }
-    }
+.iframely-embed .thumb {
+    text-indent: -10000px;
 }
 
-.category-item {
-    .post-preview {
-        .post-preview-content {
-            .thumb {
-                text-indent: -10000px;
-            }
-        }
-        
-    }
+.account .avatar.avatar-rounded {
+    width: 128px;
+    height: 128px;
+    line-height: 128px;
+    font-size: 7.5rem;
+}
+
+.posts-list .posts-list-item .content {
+    max-height: 555px;
 }

@@ -1,6 +1,11 @@
 {
     "url": "http://freelook.info",
     "name": "nodebb-plugin-freelook",
+    "library": "./index.js",
     "templates": "./templates",
-    "less": ["./plugin.less"]
+    "less": ["./plugin.less"],
+    "hooks": [{
+        "hook": "action:homepage.get:page-view",
+        "method": "pageView"
+    }]
 }
