@@ -5,7 +5,10 @@
     "templates": "./templates",
     "less": ["./plugin.less"],
     "hooks": [{
-        "hook": "action:homepage.get:page-view",
-        "method": "pageView"
+        "hook": "action:homepage.get:categories",
+        "method": "homepageGetCategories"
+    }, {
+        "hook": "filter:category.topics.prepare",
+        "method": "filterTopicsPrepare"
     }]
 }
