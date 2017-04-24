@@ -10,9 +10,9 @@
     var meta = module.parent.require('./meta');
     var user = module.parent.require('./user');
     var categoriesByLangs = {
-        ru: 'RU',
-        en: 'EN',
-        de: 'DE'
+        'ru': 'RU',
+        'en-US': 'EN',
+        'de': 'DE'
     };
 
     plugin.homepageGetCategories = function(data) {
@@ -29,7 +29,7 @@
                 categories.getCategoriesByPrivilege('cid:0:children', data.req.uid, 'find', next);
             },
             function(categoriesData, next) {
-                var categoryName = categoriesByLangs[lang.split('-')[0].toLowerCase()] || categoriesByLangs.ru;
+                var categoryName = categoriesByLangs[lang] || categoriesByLangs.ru;
                 var categoryData = categoriesData.find(function(category) {
                     return category.name === categoryName;
                 });
