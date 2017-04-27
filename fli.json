@@ -1,7 +1,7 @@
 {
     "apps": [{
         "name": "fli.nodebb",
-        "script": "loader.js",
+        "script": "app.js",
         "cwd": "nodebb",
         "autorestart": true,
         "max_restarts": 10,
