@@ -1,0 +1,11 @@
+{
+    "apps": [{
+        "name": "fli.nodebb",
+        "script": "loader.js",
+        "cwd": "nodebb"
+    }, {
+        "name": "fli.api.iframely",
+        "script": "server.js",
+        "cwd": "api/iframely"
+    }]
+}
