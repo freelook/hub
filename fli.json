@@ -2,10 +2,16 @@
     "apps": [{
         "name": "fli.nodebb",
         "script": "loader.js",
-        "cwd": "nodebb"
+        "cwd": "nodebb",
+        "autorestart": true,
+        "max_restarts": 10,
+        "restart_delay": 3000
     }, {
         "name": "fli.api.iframely",
         "script": "server.js",
-        "cwd": "api/iframely"
+        "cwd": "api/iframely",
+        "autorestart": true,
+        "max_restarts": 10,
+        "restart_delay": 3000
     }]
 }
