@@ -1,7 +1,7 @@
 server {
     listen 80;
 
-    server_name 159.203.134.121;
+    server_name freelook.info;
 
     location / {
         proxy_set_header X-Real-IP $remote_addr;
