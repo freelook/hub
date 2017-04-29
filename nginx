@@ -1,5 +1,11 @@
 server {
-    listen 80;
+        listen 80;
+        server_name 159.203.134.121;
+        return 301 http://freelook.info;
+}
+
+server {
+    listen 80 default_server;
 
     server_name freelook.info;
 
