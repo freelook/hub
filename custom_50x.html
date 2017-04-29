@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ошибка</title>
+    <meta name="viewport" content="width=device-width">
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic" rel="stylesheet">
+    <style>
+        body {
+            width: 600px;
+            padding: 20px;
+            margin: 50px auto;
+            font: 400 14px/18px Arial, Helvetica, sans-serif;
+            background: #f1f1f1;
+            box-shadow: 0 0 15px 0 rgba(0, 0, 0, .1);
+            color: #34495e
+        }
+        
+         ::-moz-selection {
+            background: #34495e;
+            color: #f1f1f1;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, .9)
+        }
+        
+         ::selection {
+            background: #34495e;
+            color: #f1f1f1;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, .9)
+        }
+        
+        hr {
+            margin: 18px 0;
+            border: 0;
+            border-top: 1px solid #f5f5f5;
+            border-bottom: 1px solid #bdc3c7
+        }
+        
+        .ta-center {
+            text-align: center
+        }
+        
+        a {
+            color: #2980b9
+        }
+        
+        a:hover {
+            text-decoration: none;
+            color: #c0392b
+        }
+        
+        .btn,
+        a.btn {
+            line-height: 32px;
+            font-size: 100%;
+            margin: 0;
+            vertical-align: baseline;
+            cursor: pointer;
+            background: #3498db;
+            color: #ecf0f1;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, .2);
+            border: 0;
+            border-radius: 3px;
+            padding: 0 15px;
+            display: inline-block;
+            text-decoration: none;
+            border-bottom: solid 3px #2980b9
+        }
+        
+        .btn:hover,
+        a.btn:hover {
+            background: #e74c3c;
+            border-bottom-color: #c0392b
+        }
+        
+        h1,
+        h2,
+        h3 {
+            font-family: 'Ubuntu Condensed', Arial, Helvetica, sans-serif;
+            font-weight: 400
+        }
+        
+        h3 {
+            margin: 0
+        }
+        
+        h1 {
+            line-height: 20px;
+            line-height: 28px
+        }
+        
+        .clearfix:after,
+        .clearfix:before {
+            content: "";
+            display: table
+        }
+        
+        .clearfix:after {
+            clear: both
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 class="ta-center">freelook.info</h1>
+        <hr>
+    </header>
+    <section class="ta-center">
+        <div>Приносим наши извинения, freelook.info в настоящее время на обслуживании. Пожалуйста, приходите позже.</div>
+        <hr <div class="fb-page" data-href="https://www.facebook.com/freelook.info/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+        <blockquote cite="https://www.facebook.com/freelook.info/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/freelook.info/">freelook.info</a></blockquote>
+        </div>
+        <a href="/" class="btn">Вернуться на главную</a>
+    </section>
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=846841298681206";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+</body>
+
+</html>
