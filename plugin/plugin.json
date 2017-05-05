@@ -10,5 +10,8 @@
     }, {
         "hook": "filter:category.topics.prepare",
         "method": "filterTopicsPrepare"
-    }]
+    }],
+    "scripts": [
+        "./client.js"
+    ]
 }

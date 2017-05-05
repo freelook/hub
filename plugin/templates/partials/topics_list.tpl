@@ -4,8 +4,9 @@
 	<li component="category/topic" class="posts-list-item row {function.generateTopicClass}" <!-- IMPORT partials/data/category.tpl -->>
 		<meta itemprop="name" content="{function.stripTags, title}">
 
-		<div class="col-lg-11 col-sm-10 col-xs-9 post-body">
+		<div class="col-md-9 col-sm-9 col-xs-9 post-body" style="border-color: {topics.category.bgColor}">
 			<div component="topic/header" class="title">
+				<i class="fa fa-commenting-o"></i>
 				<i component="topic/pinned" class="fa fa-thumb-tack <!-- IF !topics.pinned -->hide<!-- ENDIF !topics.pinned -->" title="[[topic:pinned]]"></i>
 				<i component="topic/locked" class="fa fa-lock <!-- IF !topics.locked -->hide<!-- ENDIF !topics.locked -->" title="[[topic:locked]]"></i>
 				<i component="topic/moved" class="fa fa-arrow-circle-right <!-- IF !topics.oldCid -->hide<!-- ENDIF !topics.oldCid -->" title="[[topic:moved]]"></i>
@@ -19,16 +20,14 @@
 				<!-- ENDIF !topics.noAnchor -->
 			</div>
 
-			<div component="post/content">
+			<div component="post/content" class="post-content">
 				{topics.teaser.content}
 			</div>
 
 			<div>
-				<!-- IF !template.category -->
 				<small>
 					<a href="{config.relative_path}/category/{topics.category.slug}"><span class="fa-stack fa-lg"><i style="color:{topics.category.bgColor};"class="fa fa-circle fa-stack-2x"></i><i style="color:{topics.category.color};" class="fa {topics.category.icon} fa-stack-1x"></i></span> {topics.category.name}</a>
 				</small>
-				<!-- ENDIF !template.category -->
 
 				<!-- IF topics.tags.length -->
 				<span class="tag-list">
@@ -60,10 +59,10 @@
 					<!-- IF showSelect -->
 					<div class="select" component="topic/select">
 						<!-- IF topics.thumb -->
-						<img src="{topics.thumb}" class="img-rounded user-img" />
+						<img src="{topics.thumb}" class="user-icon img-rounded user-img" />
 						<!-- ELSE -->
 						<!-- IF topics.user.picture -->
-						<img component="user/picture" data-uid="{topics.user.uid}" src="{topics.user.picture}" class="img-rounded user-img" />
+						<img component="user/picture" data-uid="{topics.user.uid}" src="{topics.user.picture}" class="user-icon img-rounded user-img" />
 						<!-- ELSE -->
 						<div class="user-icon user-img" style="background-color: {topics.user.icon:bgColor};">{topics.user.icon:text}</div>
 						<!-- ENDIF topics.user.picture -->
@@ -75,10 +74,10 @@
 					<!-- IF !showSelect -->
 					<a href="<!-- IF topics.user.userslug -->{config.relative_path}/user/{topics.user.userslug}<!-- ELSE -->#<!-- ENDIF topics.user.userslug -->" class="pull-left">
 						<!-- IF topics.thumb -->
-						<img src="{topics.thumb}" class="img-rounded user-img" />
+						<img src="{topics.thumb}" class="user-icon img-rounded user-img" />
 						<!-- ELSE -->
 						<!-- IF topics.user.picture -->
-						<img component="user/picture" data-uid="{topics.user.uid}" src="{topics.user.picture}" class="img-rounded user-img" />
+						<img component="user/picture" data-uid="{topics.user.uid}" src="{topics.user.picture}" class="user-icon img-rounded user-img" />
 						<!-- ELSE -->
 						<div class="user-icon user-img" style="background-color: {topics.user.icon:bgColor};">{topics.user.icon:text}</div>
 						<!-- ENDIF topics.user.picture -->

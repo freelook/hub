@@ -48,12 +48,35 @@ body {
     }
 }
 
+.navbar-default {
+    .navbar-toggle {
+        &,
+        &:hover {
+            background: none;
+            border: none;
+        }
+    }
+}
+
 #category-no-topics {
     margin: 15px 0;
 }
 
 #deleteAccountBtn {
     width: 100%;
+}
+
+.post-content {
+    max-width: 600px;
+}
+
+.teaser-post {
+    .title {
+        margin-bottom: 10px;
+    }
+    .post-content {
+        padding: 15px;
+    }
 }
 
 .iframely-embed .thumb {
@@ -97,6 +120,11 @@ body {
             border: none;
             padding-top: 0;
             padding-bottom: 0;
+            a {
+                span {
+                    height: 20px;
+                }
+            }
             .post-body {
                 padding-top: 10px;
                 padding-bottom: 10px;
