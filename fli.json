@@ -1,17 +1,19 @@
 {
     "apps": [{
-        "name": "fli.nodebb",
-        "script": "app.js",
+        "name": "fli.nodebb.start",
+        "script": "nodebb",
         "cwd": "nodebb",
-        "autorestart": true,
-        "max_restarts": 10,
-        "restart_delay": 3000
+        "args": "start",
+        "autorestart": false
     }, {
         "name": "fli.api.iframely",
         "script": "server.js",
         "cwd": "api/iframely",
         "autorestart": true,
         "max_restarts": 10,
-        "restart_delay": 3000
+        "restart_delay": 3000,
+        "env": {
+            "PORT": 8061
+        }
     }]
 }
