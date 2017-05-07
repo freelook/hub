@@ -66,6 +66,10 @@
         });
     };
 
+    plugin.log404 = function(data) {
+        data.res.sendStatus(404);
+    };
+
     module.exports = plugin;
 
 })(module);
