@@ -15,5 +15,15 @@
         "env": {
             "PORT": 8061
         }
+    }, {
+        "name": "fli.api.kue",
+        "script": "index.js",
+        "cwd": "api/kue",
+        "autorestart": true,
+        "max_restarts": 10,
+        "restart_delay": 3000,
+        "env": {
+            "PORT": 8062
+        }
     }]
 }
