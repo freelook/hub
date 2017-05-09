@@ -249,3 +249,13 @@ DigitalOcean- http://www.blogsynthesis.com/install-nodebb-on-digitalocean
 Cloud9 - https://community.nodebb.org/topic/7983/setting-up-nodebb-on-cloud-9
 
 SWAP - https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04
+
+## Upgrading steps
+
+https://docs.nodebb.org/en/latest/upgrading/index.html
+
+$ git pull origin master
+$ git push freelook master
+
+Remove teaser hook from person plugin
+Check generateCard=true flag for iframely
