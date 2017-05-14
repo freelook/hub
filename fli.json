@@ -4,6 +4,7 @@
         "script": "nodebb",
         "cwd": "nodebb",
         "args": "start",
+        "max_restarts": 0,
         "autorestart": false
     }, {
         "name": "fli.api.iframely",
