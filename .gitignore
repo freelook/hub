@@ -7,6 +7,7 @@ mongodump
 mongorestore
 ssh
 redisdump
+redisrestore
 
 node_modules/
 data/
