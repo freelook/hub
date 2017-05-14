@@ -5,7 +5,8 @@
         "cwd": "nodebb",
         "args": "start",
         "max_restarts": 0,
-        "autorestart": false
+        "autorestart": false,
+        "no_daemon": true
     }, {
         "name": "fli.api.iframely",
         "script": "server.js",
