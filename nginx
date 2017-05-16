@@ -32,7 +32,7 @@ server {
     }
     
     location /de/ {
-        rewrite ^/de/(.*)$ $1?lang=de break;
+        rewrite ^/de(.*)$ $1?lang=de last;
     }
     
     error_page 500 502 503 504 /custom_50x.html;
