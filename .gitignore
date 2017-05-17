@@ -6,6 +6,7 @@ mongod
 mongodump
 mongorestore
 ssh
+sshredis
 redisdump
 redisrestore
 
