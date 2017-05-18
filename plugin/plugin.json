@@ -16,5 +16,6 @@
     }],
     "scripts": [
         "./client.js"
-    ]
+    ],
+    "compatibility": "*"
 }

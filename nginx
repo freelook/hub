@@ -39,10 +39,6 @@ server {
         proxy_set_header Connection "upgrade";
     }
     
-    location /de/ {
-        rewrite ^/de(.*)$ $1?lang=de last;
-    }
-    
     error_page 500 502 503 504 /custom_50x.html;
     location = /custom_50x.html {
         root /workspace;
