@@ -41,7 +41,7 @@ define('fli/client', ['components', 'forum/topic/images'], function(components, 
                     try {
                         sessionStorage.setItem(url, JSON.stringify({
                             data: data,
-                            expire: Date.now() + 60000
+                            expire: Date.now() + 600000
                         }));
                     }
                     catch (e) {
