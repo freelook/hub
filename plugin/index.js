@@ -10,7 +10,7 @@
     var meta = module.parent.require('./meta');
     var user = module.parent.require('./user');
     var categoriesByLangs = {
-        'ru': 'RU',
+        'ru': 'UA-RU',
         'en-US': 'EN',
         'de': 'DE'
     };
