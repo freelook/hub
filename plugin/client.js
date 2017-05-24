@@ -23,8 +23,8 @@ define('fli/client', ['components', 'forum/topic/images'], function(components, 
                     if (item) {
                         var jsonItem = JSON.parse(item);
                         if (jsonItem.expire > Date.now()) {
-                            done(jsonItem.data);
-                            proceed = false;
+                            done(jsonItem.data, 'success');
+                            proceed = $.when(jsonItem.data);
                         }
                         else {
                             sessionStorage.removeItem(url);
