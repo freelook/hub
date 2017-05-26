@@ -13,6 +13,9 @@
     }, {
         "hook": "action:meta.override404",
         "method": "log404"
+    }, {
+        "hook": "static:app.load",
+        "method": "load"
     }],
     "scripts": [
         "./client.js"
