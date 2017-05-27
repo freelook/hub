@@ -1,0 +1,46 @@
+@media (max-width: 750px) {
+    .posts-list {
+        .posts-list-item {
+            .post-body {
+                width: calc(~'100vw - 35px');
+            }
+            .post-info {
+                .post-author {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.post-content,
+.content {
+    max-width: 600px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.posts-list {
+    .posts-list-item {
+        .content {
+            max-height: initial;
+        }
+    }
+}
+
+.teaser-post {
+    .title {
+        margin-bottom: 10px;
+    }
+    .post-content {
+        padding: 15px;
+    }
+}
+
+.media-heading img {
+    width: 30px;
+}
+
+.iframely-embed .thumb {
+    text-indent: -10000px;
+}
