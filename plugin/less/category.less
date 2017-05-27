@@ -1,0 +1,44 @@
+.category {
+    .subcategory {
+        &+hr.hidden-xs,
+        &>p:first-child,
+        &~p.hidden-xs {
+            display: none;
+        }
+    }
+    .teaser {
+        .post-content {
+            img {
+                display: none;
+            }
+        }
+    }
+    .posts-list {
+        margin-top: 10px;
+        .posts-list-item {
+            width: initial;
+            border: none;
+            padding-top: 0;
+            padding-bottom: 0;
+            a {
+                span {
+                    height: 20px;
+                }
+            }
+            .post-body {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                padding-right: 23px;
+            }
+            .avatar {
+                .fa-check {
+                    padding: 0;
+                    background: #fff;
+                }
+                .user-icon {
+                    z-index: 1;
+                }
+            }
+        }
+    }
+}

@@ -1,3 +1,8 @@
+@import "./less/account";
+@import "./less/category";
+@import "./less/topic";
+
+
 @media (min-width: 768px) and (max-width: 1199px) {
     #search-form {
         display: none;
@@ -63,8 +68,11 @@ body {
     width: 100%;
 }
 
-.post-content {
+.post-content,
+.content {
     max-width: 600px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .posts-list {
@@ -92,67 +100,10 @@ body {
     text-indent: -10000px;
 }
 
-.account {
-    &>.row>.col-xs-12>h1 {
-        display: none;
-    }
-    .avatar.avatar-rounded {
-        width: 128px;
-        height: 128px;
-        line-height: 128px;
-        font-size: 7.5rem;
-    }
+[component="category/post/guest"] {
+    display: none;
 }
 
-.category {
-    .subcategory+hr.hidden-xs,
-    [component="category/post/guest"] {
-        display: none;
-    }
-    .teaser {
-        .post-content {
-            img {
-                display: none;
-            }
-        }
-    }
-    .posts-list {
-        margin-top: 10px;
-        .posts-list-item {
-            width: initial;
-            border: none;
-            padding-top: 0;
-            padding-bottom: 0;
-            a {
-                span {
-                    height: 20px;
-                }
-            }
-            .post-body {
-                padding-top: 10px;
-                padding-bottom: 10px;
-                padding-right: 23px;
-            }
-            .avatar {
-                .fa-check {
-                    padding: 0;
-                    background: #fff;
-                }
-                .user-icon {
-                    z-index: 1;
-                }
-            }
-        }
-    }
-}
-
-.topic {
-    [component="topic/reply/guest"] {
-        display: none;
-    }
-    .topic-main-buttons {
-        .bottom-sheet {
-            float: right;
-        }
-    }
+#footer>.copyright {
+    margin-bottom: 25px;
 }
