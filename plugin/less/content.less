@@ -13,6 +13,12 @@
     }
 }
 
+@media (min-width: 992px) {
+    .posts-list .posts-list-item .post-body {
+        width: 70%;
+    }
+}
+
 .post-content,
 .content {
     max-width: 600px;
@@ -41,6 +47,11 @@
     width: 30px;
 }
 
-.iframely-embed .thumb {
+.iframely-embed .thumb,
+.media>img {
     text-indent: -10000px;
+}
+
+.search-result-text {
+    max-height: initial;
 }
