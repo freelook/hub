@@ -18,7 +18,13 @@
         "method": "load"
     }],
     "scripts": [
-        "./client.js"
+        "./public/src/js/index.js",
+        "./public/src/js/client.js",
+        "./public/src/js/trends.js"
     ],
+    "staticDirs": {
+        "src": "./public/src"
+    },
+    "languages": "./public/languages",
     "compatibility": "*"
 }

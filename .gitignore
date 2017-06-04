@@ -16,3 +16,4 @@ dump/
 log/
 nodebb/
 api/
+plugin/config.json

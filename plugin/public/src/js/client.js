@@ -55,10 +55,3 @@ define('fli/client', ['components', 'forum/topic/images'], function(components, 
 
     return FLI;
 });
-
-$(document).ready(function() {
-    require(['fli/client'], function(fli) {
-        fli.cache();
-        fli.init();
-    });
-});

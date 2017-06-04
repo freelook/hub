@@ -7,7 +7,8 @@ module.exports = function(plugin) {
     var meta = require.main.require('./src/meta');
     var user = require.main.require('./src/user');
     var categoriesByLangs = {
-        'ru': 'UA-RU',
+        'ru': 'RU',
+        'uk': 'UA',
         'en-US': 'EN',
         'de': 'DE'
     };
@@ -26,11 +27,13 @@ module.exports = function(plugin) {
                 categories.getCategoriesByPrivilege('cid:0:children', data.req.uid, 'find', next);
             },
             function(categoriesData, next) {
-                var categoryName = categoriesByLangs[lang] || categoriesByLangs.ru;
-                var categoryData = categoriesData.find(function(category) {
-                    return category.name === categoryName;
-                });
-                if (categoryData) {
+                var categoryName = categoriesByLangs[lang];
+                if (categoryName) {
+                    var categoryData = categoriesData.find(function(category) {
+                        return category.name === categoryName;
+                    });
+                }
+                if (categoryName && categoryData) {
                     data.req.params.topic_index = '1';
                     data.req.params.category_id = categoryData.cid;
                     data.req.params.slug = categoryData.name.toLowerCase();
