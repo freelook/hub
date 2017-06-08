@@ -60,6 +60,7 @@ server {
 		if ($request_uri ~ ^/cache/24h/(.*)$) {
 		    set $target $1;
 		}
+	    resolver 127.0.0.1;
         proxy_cache FLI24h;
 		proxy_pass $target;
 	}
@@ -68,6 +69,7 @@ server {
 		if ($request_uri ~ ^/cache/30d/(.*)$) {
 		    set $target $1;
 		}
+	    resolver 127.0.0.1;
         proxy_cache FLI30d;
 		proxy_pass $target;
 	}
