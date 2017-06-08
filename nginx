@@ -1,5 +1,11 @@
-# FLI CACHE
+# FLI CACHE 60m
     proxy_cache_path /var/www/cache levels=1:2 keys_zone=FLI:10m inactive=60m max_size=3g use_temp_path=off;
+    
+# FLI CACHE 24h
+    proxy_cache_path /var/www/cache24h levels=1:2 keys_zone=FLI24h:10m inactive=24h max_size=3g use_temp_path=off;
+    
+# FLI CACHE 30d
+    proxy_cache_path /var/www/cache30d levels=1:2 keys_zone=FLI30d:10m inactive=24h max_size=3g use_temp_path=off;
 
 server {
         listen 80;
@@ -44,4 +50,25 @@ server {
         root /workspace;
         internal;
     }
+}
+
+server {
+    listen 80;
+    server_name localhost;
+    
+	location /cache/24h/ {
+		if ($request_uri ~ ^/cache/24h/(.*)$) {
+		    set $target $1;
+		}
+        proxy_cache FLI24h;
+		proxy_pass $target;
+	}
+	
+	location /cache/30d/ {
+		if ($request_uri ~ ^/cache/30d/(.*)$) {
+		    set $target $1;
+		}
+        proxy_cache FLI30d;
+		proxy_pass $target;
+	}
 }
