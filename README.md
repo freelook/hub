@@ -198,8 +198,9 @@ $ sudo service nginx reload
 $ sudo service nginx stop
 
 Test:
-
 sudo nginx -c /etc/nginx/nginx.conf -t
+Logs:
+tail -f /var/log/nginx/error.log
 
 -- Install redis
 

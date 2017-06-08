@@ -54,14 +54,15 @@ server {
 
 server {
     listen 80;
-    server_name localhost;
+    server_name 127.0.0.1;
     
 	location /cache/24h/ {
 		if ($request_uri ~ ^/cache/24h/(.*)$) {
 		    set $target $1;
-		}
-	    resolver 127.0.0.1;
-        proxy_cache FLI24h;
+		}		
+		proxy_pass_request_headers off;
+		proxy_ignore_headers Cache-Control Expires Set-Cookie;
+		proxy_cache FLI24h;
 		proxy_pass $target;
 	}
 	
@@ -69,7 +70,8 @@ server {
 		if ($request_uri ~ ^/cache/30d/(.*)$) {
 		    set $target $1;
 		}
-	    resolver 127.0.0.1;
+		proxy_pass_request_headers off;
+		proxy_ignore_headers Cache-Control Expires Set-Cookie;
         proxy_cache FLI30d;
 		proxy_pass $target;
 	}
