@@ -80,16 +80,16 @@ Trends.get = function(url, next) {
                     try {
                         next(null, body);
                     }
-                    catch (e) {
-                        next(e);
+                    catch (err) {
+                        next(new Error(err));
                     }
                 }
                 else {
-                    next(err);
+                    next(new Error(err));
                 }
             })
-            .on('error', function(error) {
-                next(error);
+            .on('error', function(err) {
+                next(new Error(err));
             });
     }
     else {
