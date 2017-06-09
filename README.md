@@ -201,6 +201,7 @@ Test:
 sudo nginx -c /etc/nginx/nginx.conf -t
 Logs:
 tail -f /var/log/nginx/error.log
+tail -f /var/log/nginx/access.log
 
 -- Install redis
 

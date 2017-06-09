@@ -5,7 +5,7 @@
     proxy_cache_path /var/www/cache24h levels=1:2 keys_zone=FLI24h:10m inactive=24h max_size=3g use_temp_path=off;
     
 # FLI CACHE 30d
-    proxy_cache_path /var/www/cache30d levels=1:2 keys_zone=FLI30d:10m inactive=24h max_size=3g use_temp_path=off;
+    proxy_cache_path /var/www/cache30d levels=1:2 keys_zone=FLI30d:10m inactive=30d max_size=3g use_temp_path=off;
 
 server {
         listen 80;
@@ -25,6 +25,7 @@ server {
 
     location / {
         proxy_cache FLI;
+        proxy_cache_valid 60m;
         proxy_cache_revalidate on;
         proxy_cache_min_uses 3;
         proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
@@ -59,10 +60,12 @@ server {
 	location /cache/24h/ {
 		if ($request_uri ~ ^/cache/24h/(.*)$) {
 		    set $target $1;
-		}		
+		}
+		resolver 8.8.8.8;
 		proxy_pass_request_headers off;
 		proxy_ignore_headers Cache-Control Expires Set-Cookie;
 		proxy_cache FLI24h;
+		proxy_cache_valid 24h;
 		proxy_pass $target;
 	}
 	
@@ -70,9 +73,11 @@ server {
 		if ($request_uri ~ ^/cache/30d/(.*)$) {
 		    set $target $1;
 		}
+		resolver 8.8.8.8;
 		proxy_pass_request_headers off;
 		proxy_ignore_headers Cache-Control Expires Set-Cookie;
         proxy_cache FLI30d;
+		proxy_cache_valid 30d;
 		proxy_pass $target;
 	}
 }
