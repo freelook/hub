@@ -8,7 +8,8 @@ var trendsByLangs = {
     'en-US': 'p1',
     'de': 'p15'
 };
-var WEB_ENABLED = false;
+var WEB_ENABLED = true;
+var IMAGE_ENABLED = true;
 
 function Trends(plugin) {
 
@@ -42,7 +43,7 @@ function Trends(plugin) {
                     }
                 },
                 image: function(next) {
-                    if (data.trend) {
+                    if (IMAGE_ENABLED && data.trend) {
                         Trends.image(data.trend, next);
                     }
                     else {
