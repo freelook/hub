@@ -11,7 +11,7 @@ define('forum/trends', ['search', 'autocomplete', 'storage', '/plugins/nodebb-pl
 
 			$('#trends-search').off('submit').on('submit', function(e) {
 				e.preventDefault();
-				ajaxify.go('trends/' + $('#trends-input').val());
+				ajaxify.go('trends/' + Trends.textToPath($('#trends-input').val()));
 				return false;
 			});
 
@@ -27,6 +27,10 @@ define('forum/trends', ['search', 'autocomplete', 'storage', '/plugins/nodebb-pl
 					columnWidth: 200
 				});
 			});
+		};
+
+		Trends.textToPath = function(text) {
+			return (text || '').replace(/ /gim, '-');
 		};
 
 		return Trends;
