@@ -73,7 +73,7 @@ Trends.get = function(url, next) {
             .get({
                 url: url,
                 headers: {
-                    'User-Agent': 'request',
+                    'User-Agent': 'Chrome/100',
                     'Content-Type': 'text/plain'
                 }
             }, function(err, response, body) {
