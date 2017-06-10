@@ -8,7 +8,7 @@ var trendsByLangs = {
     'en-US': 'p1',
     'de': 'p15'
 };
-
+var WEB_ENABLED = false;
 
 function Trends(plugin) {
 
@@ -34,7 +34,7 @@ function Trends(plugin) {
                     Trends.suggest(data, next);
                 },
                 web: function(next) {
-                    if (data.trend) {
+                    if (WEB_ENABLED && data.trend) {
                         Trends.web(data.trend, next);
                     }
                     else {
