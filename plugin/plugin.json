@@ -20,7 +20,8 @@
     "scripts": [
         "./public/src/js/index.js",
         "./public/src/js/client.js",
-        "./public/src/js/trends.js"
+        "./public/src/js/trends.js",
+        "./public/src/js/deals.js"
     ],
     "staticDirs": {
         "src": "./public/src"

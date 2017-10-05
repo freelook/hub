@@ -4,5 +4,8 @@
   "description": "freelook.info",
   "main": "plugin.js",
   "author": "Dima Kostrub",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "apac": "3.0.2"
+  }
 }

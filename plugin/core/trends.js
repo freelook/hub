@@ -13,21 +13,22 @@ var IMAGE_ENABLED = true;
 
 function Trends(plugin) {
 
-    plugin.load = function(params, callback) {
+    plugin.loadTrends = function(params) {
 
         var router = params.router;
         var middleware = params.middleware;
 
         function render(req, res, next) {
 
+            var trend = Trends.pathToText(req.params.trend);
             var data = {
-                title: '[[global:fli.trends]]',
+                title: [!!trend ? trend.concat(' - ') : '', '[[global:fli.trends]]'].join(''),
                 breadcrumbs: helpers.buildBreadcrumbs([{
                     text: '[[global:fli.trends]]'
                 }]),
                 template: 'trends',
                 lang: req.sessionStore && req.sessionStore.lang,
-                trend: Trends.pathToText(req.params.trend)
+                trend: trend
             };
 
             async.parallel({
@@ -60,8 +61,6 @@ function Trends(plugin) {
 
         router.get('/trends/:trend?', middleware.buildHeader, render);
         router.get('/api/trends/:trend?', render);
-
-        callback();
 
     };
 
