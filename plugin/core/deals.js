@@ -1,5 +1,6 @@
 var _ = require.main.require('lodash');
 var async = require.main.require('async');
+var S = require.main.require('string');
 var request = require.main.require('request');
 var helpers = require.main.require('./src/controllers/helpers');
 var config = module.parent.require('./config.json');
@@ -109,7 +110,13 @@ Deals.map = function(items, next) {
             title: _.get(item, 'ItemAttributes.Title') || '',
             img: _.get(item, 'LargeImage.URL') || '',
             url: _.get(item, 'DetailPageURL') || '',
-            content: _.chain(item).get('EditorialReviews.EditorialReview.Content').truncate({ length: 300 }).value() || '',
+            content: S(_.chain(item)
+                    .get('EditorialReviews.EditorialReview.Content')
+                    .truncate({ length: 300 })
+                    .value() || '')
+                .stripTags()
+                .decodeHTMLEntities()
+                .s,
             price: _.get(item, 'OfferSummary.LowestNewPrice.FormattedPrice') || '',
             ASIN: _.get(item, 'ASIN') || '',
         };
