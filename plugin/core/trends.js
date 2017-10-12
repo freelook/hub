@@ -13,58 +13,76 @@ var IMAGE_ENABLED = true;
 
 function Trends(plugin) {
 
-    plugin.loadTrends = function(params) {
-
+    plugin.loaders.push(function(params) {
         var router = params.router;
         var middleware = params.middleware;
-
-        function render(req, res, next) {
-
-            var trend = Trends.pathToText(req.params.trend);
-            var data = {
-                title: [!!trend ? trend.concat(' - ') : '', '[[global:fli.trends]]'].join(''),
-                breadcrumbs: helpers.buildBreadcrumbs([{
-                    text: '[[global:fli.trends]]'
-                }]),
-                template: 'trends',
-                lang: req.sessionStore && req.sessionStore.lang,
-                trend: trend
-            };
-
-            async.parallel({
-                suggest: function(next) {
-                    Trends.suggest(data, next);
-                },
-                web: function(next) {
-                    if (WEB_ENABLED && data.trend) {
-                        Trends.web(data.trend, next);
-                    }
-                    else {
-                        next();
-                    }
-                },
-                image: function(next) {
-                    if (IMAGE_ENABLED && data.trend) {
-                        Trends.image(data.trend, next);
-                    }
-                    else {
-                        next();
-                    }
-                }
-            }, function(err, values) {
-                data.err = err;
-                data.values = values;
-                res.render(data.template, data);
-            });
-
-        }
-
-        router.get('/trends/:trend?', middleware.buildHeader, render);
-        router.get('/api/trends/:trend?', render);
-
-    };
+        router.get('/trends/:trend?', middleware.buildHeader, Trends.render);
+        router.get('/api/trends/:trend?', Trends.render);
+    });
 
 }
+
+Trends.render = function(req, res, next) {
+
+    var trend = Trends.pathToText(req.params.trend);
+    var title = [!!trend ? trend.concat(' - ') : '', '[[global:fli.trends]]'].join('');
+    var description = ['[[global:fli.trends]]', !!trend ? ': '.concat(trend) : ''].join('');
+    var data = {
+        title: title,
+        breadcrumbs: helpers.buildBreadcrumbs([{
+            text: '[[global:fli.trends]]'
+        }]),
+        template: 'trends',
+        lang: req.sessionStore && req.sessionStore.lang,
+        trend: trend
+    };
+    if (res.locals) {
+        res.locals.metaTags = [{
+                name: 'title',
+                content: title,
+            },
+            {
+                property: 'og:title',
+                content: title,
+            },
+            {
+                name: 'description',
+                content: description,
+            },
+            {
+                property: 'og:description',
+                content: description,
+            },
+        ];
+    }
+
+    async.parallel({
+        suggest: function(next) {
+            Trends.suggest(data, next);
+        },
+        web: function(next) {
+            if (WEB_ENABLED && data.trend) {
+                Trends.web(data.trend, next);
+            }
+            else {
+                next();
+            }
+        },
+        image: function(next) {
+            if (IMAGE_ENABLED && data.trend) {
+                Trends.image(data.trend, next);
+            }
+            else {
+                next();
+            }
+        }
+    }, function(err, values) {
+        data.err = err;
+        data.values = values;
+        res.render(data.template, data);
+    });
+
+};
 
 Trends.get = function(url, next) {
     if (url) {

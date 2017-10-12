@@ -35,10 +35,10 @@
         <!-- END values.suggest -->
     </div>
     
-    <div id="deals-results" data-search-query="{deal}">
+    <div id="deals-results" data-search-query="{deal}" class="fli-grid">
         
         <!-- BEGIN values.web.results -->
-        <div class="item">
+        <div class="fli-item item">
             <!-- IF values.web.results.img -->
             <div class="img"><a href="{values.web.results.url}" target="_blank"><img src="{values.web.results.img}" title="{values.web.results.title}" alt="{values.web.results.title}"></a></div>
             <!-- ENDIF values.web.results.img -->

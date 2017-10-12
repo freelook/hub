@@ -13,50 +13,68 @@ var oph = new OperationHelper({
 
 function Deals(plugin) {
 
-    plugin.loadDeals = function(params) {
-
+    plugin.loaders.push(function(params) {
         var router = params.router;
         var middleware = params.middleware;
-
-        function render(req, res, next) {
-
-            var deal = Deals.pathToText(req.params.deal);
-            var data = {
-                title: [!!deal ? deal.concat(' - ') : '', '[[global:fli.deals]]'].join(''),
-                breadcrumbs: helpers.buildBreadcrumbs([{
-                    text: '[[global:fli.deals]]'
-                }]),
-                template: 'deals',
-                lang: req.sessionStore && req.sessionStore.lang,
-                deal: deal
-            };
-
-            async.parallel({
-                suggest: function(next) {
-                    Deals.suggest(data, next);
-                },
-                web: function(next) {
-                    if (data.deal) {
-                        Deals.web(data.deal, next);
-                    }
-                    else {
-                        next();
-                    }
-                }
-            }, function(err, values) {
-                data.err = err;
-                data.values = values;
-                res.render(data.template, data);
-            });
-
-        }
-
-        router.get('/deals/:deal?', middleware.buildHeader, render);
-        router.get('/api/deals/:deal?', render);
-
-    };
+        router.get('/deals/:deal?', middleware.buildHeader, Deals.render);
+        router.get('/api/deals/:deal?', Deals.render);
+    });
 
 }
+
+Deals.render = function(req, res, next) {
+
+    var deal = Deals.pathToText(req.params.deal);
+    var title = [!!deal ? deal.concat(' - ') : '', '[[global:fli.deals]]'].join('');
+    var description = ['[[global:fli.deals]]', !!deal ? ': '.concat(deal) : ''].join('');
+    var data = {
+        title: title,
+        breadcrumbs: helpers.buildBreadcrumbs([{
+            text: '[[global:fli.deals]]'
+        }]),
+        template: 'deals',
+        lang: req.sessionStore && req.sessionStore.lang,
+        deal: deal
+    };
+    if (res.locals) {
+        res.locals.metaTags = [{
+                name: 'title',
+                content: title,
+            },
+            {
+                property: 'og:title',
+                content: title,
+            },
+            {
+                name: 'description',
+                content: description,
+            },
+            {
+                property: 'og:description',
+                content: description,
+            },
+        ];
+    }
+
+    async.parallel({
+        suggest: function(next) {
+            Deals.suggest(data, next);
+        },
+        web: function(next) {
+            if (data.deal) {
+                Deals.web(data.deal, next);
+            }
+            else {
+                next();
+            }
+        }
+    }, function(err, values) {
+        data.err = err;
+        data.values = values;
+        res.render(data.template, data);
+    });
+
+};
 
 Deals.suggest = function(data, next) {
     Trends.suggest({ trend: data.deal, lang: data.lang }, next);

@@ -3,6 +3,7 @@
     "use strict";
 
     var plugin = {};
+    plugin.loaders = [];
 
     require('./core/home.js')(plugin);
     require('./core/category.js')(plugin);
@@ -11,8 +12,9 @@
     require('./core/deals.js')(plugin);
 
     plugin.load = function(params, callback) {
-        plugin.loadTrends(params);
-        plugin.loadDeals(params);
+        plugin.loaders.map(function(loader) {
+            loader(params);
+        });
         callback();
     };
 

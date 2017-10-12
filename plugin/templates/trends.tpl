@@ -35,10 +35,10 @@
         <!-- END values.suggest -->
     </div>
     
-    <div id="trends-results" data-search-query="{trend}">
+    <div id="trends-results" data-search-query="{trend}" class="fli-grid">
         
         <!-- BEGIN values.image.results -->
-        <div class="item">
+        <div class="fli-item item">
             <div class="img"><a href="{values.image.results.url}" target="_blank"><img src="{values.image.results.url}" title="{values.image.results.titleNoFormatting}" alt="{values.image.results.titleNoFormatting}"></a></div>
             <div class="title"><a href="{values.image.results.originalContextUrl}" target="_blank">{values.image.results.title}</a></div>
             <div class="content">{values.image.results.content}</div>
@@ -46,7 +46,7 @@
         <!-- END values.image.results -->
         
         <!-- BEGIN values.web.results -->
-        <div class="item">
+        <div class="fli-item item">
             <!-- IF values.web.results.richSnippet.cseImage.src -->
             <div class="img"><a href="{values.web.results.richSnippet.cseImage.src}" target="_blank"><img src="{values.web.results.richSnippet.cseImage.src}" title="{values.web.results.titleNoFormatting}" alt="{values.web.results.titleNoFormatting}"></a></div>
             <!-- ENDIF values.web.results.richSnippet.cseImage.src -->
